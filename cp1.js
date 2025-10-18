@@ -1,57 +1,44 @@
-
-const entry = document.createElement('div');
-entry.textContent = commentSection.value;
-commentSection.value = ""; // clears after submit
-document.getElementById('feedbackArea').appendChild(entry);
-
-// const addProductButton = document.getElementById('addButton')
-// addProductButton.addEventListener('click', function() =>{
-//    entry.textContent = "Feedback recorded. Thank you!";
-
-// }
-
-// 1. Select the key elements from your HTML
-const addProductButton = document.getElementById('addButton');
+// Gather DOM elements
+const usernameInput = document.getElementById("username");
+const emailInput = document.getElementById("email");
 const commentSection = document.getElementById('commentSection');
-const feedbackArea = document.getElementById('feedbackArea');
+const addButton = document.getElementById('addButton');
+const feedbackDisplay = document.getElementById('feedbackDisplay');
+const countDisplay = document.getElementById("charCount");
 
-// 2. Add the click event listener
-addProductButton.addEventListener('click', function () {
-  // Create a new <div> for the feedback
+
+
+// Add the click event listener
+addButton.addEventListener('click', function () {
   const entry = document.createElement('div');
   entry.textContent = commentSection.value;
-
-  // Clear the text area for new input
   commentSection.value = "";
-
-  // Append the new entry to the feedback area
-  feedbackArea.appendChild(entry);
+  feedbackDisplay.appendChild(entry);
 });
 
-commentSection.addEventListener("mouseover", () => {
-  console.log("Mouse is over the comment box!");
+// Count characters
+commentSection.addEventListener("input", () => {
+countDisplay.textContent = "Characters: " + commentSection.value.length;
+});
+
+// Mouse over and mouse out
+commentSection.addEventListener("mouseover", (event) => {
+  event.showTooltip("Hey Man");
 });
 commentSection.addEventListener("mouseout", () => {
-  console.log("Mouse is out of the comment box!");
+  hideTooltip("Toodles");
 });
 
+userForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
 
-// const contentDiv= document.getElementById("content");
-// const firstMessage = document.querySelector('.message')
+  const usernameValue = username.value.trim();
+  const emailValue = email.value.trim();
+  const commentValue = commentSection.value.trim();
 
-// const nameAndEmail = document.querySelectorAll('#serviceInput')
-// const commmentSection = document.getElementById('commentSection')
+  if (!usernameValue || !emailValue || !commentSectionValue) {
+    alert('Please fill in all fields.');
+    return;
+  }
+});
 
-
-
-
-    
-
-// const nameInput = document.getElementByID("username");
-
-// const emailInput = document.querySelector("#email");
-// const messageInput = document.querySelector("#comments")
-
-// const entry =document.createElement("div");
-// entry.textContent= "Feedback recorded. Thank you!";
-// document.getElementById("Feedback-display").appendChild(entry);
