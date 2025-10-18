@@ -22,19 +22,20 @@ countDisplay.textContent = "Characters: " + commentSection.value.length;
 });
 
 // Mouse over and mouse out
-commentSection.addEventListener("mouseover", (event) => {
-  event.showTooltip("Hey Man");
+
+commentSection.addEventListener("mouseover", () => {
+  showTooltip("Hey Man");
 });
 commentSection.addEventListener("mouseout", () => {
-  hideTooltip("Toodles");
+  hideTooltip();
 });
 
 userForm.addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault(); 
 
-  const usernameValue = username.value.trim();
-  const emailValue = email.value.trim();
-  const commentValue = commentSection.value.trim();
+  const usernameValue = username.value;
+  const emailValue = email.value;
+  const commentSectionValue = commentSection.value;
 
   if (!usernameValue || !emailValue || !commentSectionValue) {
     alert('Please fill in all fields.');
@@ -42,3 +43,9 @@ userForm.addEventListener('submit', function(event) {
   }
 });
 
+document.querySelector('#userForm').addEventListener('click', (e) => {
+  if (e.target.matches("input, textarea")) {
+console.log("Interacting with:" + e.target.id);
+e.stopPropagation();
+  }
+});
